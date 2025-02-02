@@ -1,0 +1,46 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  font-family: "Permanent Marker", cursive;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  box-shadow: 0 0 0 2px;
+  cursor: pointer;
+}
+.statusText{
+  font-family: cursive;
+  margin: 10px 0;
+  font-size: 30px;
+}
+.restartBtn {
+  font-family: cursive;
+  background-color: white;
+  border: 1px solid;
+  width: 110px;
+  font-size: 20px;
+  height: 40px;
+}
+.restartBtn:hover {
+  background-color: rgb(29, 119, 197);
+  color: white;
+  cursor: pointer;
+}

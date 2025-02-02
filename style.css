@@ -1,0 +1,31 @@
+* {
+  margin: auto;
+  padding: auto;
+}
+
+main {
+  /* background-color: rgb(3, 88, 163); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.board {
+  outline: auto;
+  width: 150px;
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+.cell  {
+  font-family: cursive;
+  outline: auto;
+  font-size: 30px;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+}
