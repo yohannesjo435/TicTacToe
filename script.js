@@ -1,8 +1,9 @@
 
 const boardDisplayer = (() => {
   let gameboard = ["","","","","","","","",""]
-  let player = {player1: "X", player2: "O"}
-  let currentPlayer = player["player2"]//o
+  // let player = {player1: "X", player2: "O"}
+  let player = ["X", "O"]
+  let currentPlayer = player[1]//o
   let gameover = false
   
   let gameboardHTML = ``
@@ -24,8 +25,9 @@ const boardDisplayer = (() => {
 const displayContollers = (() => {
   const restartBtn = document.querySelector(".restart")
   const statusDisplayer = document.querySelector(".statusDisplayer")
-  // statusDisplayer.innerText = boardDisplayer.
   restartBtn.addEventListener("click", restartGame)
+
+  return {statusDisplayer}
 })()
 
 
@@ -34,11 +36,16 @@ function displayElement(cell, cellId) {
   if (!(boardDisplayer.gameover)){
     if(cell.innerText === ""){
       if (boardDisplayer.currentPlayer === "X") {
-        boardDisplayer.currentPlayer = boardDisplayer.player["player2"]
+        boardDisplayer.currentPlayer = boardDisplayer.player[1]
+        displayContollers.statusDisplayer.innerText = boardDisplayer.player[0]
+
       }else if (boardDisplayer.currentPlayer === "O"){
-        boardDisplayer.currentPlayer = boardDisplayer.player["player1"]
+        boardDisplayer.currentPlayer = boardDisplayer.player[0]
+        displayContollers.statusDisplayer.innerText = boardDisplayer.player[1]
+
       }
       cell.innerText = boardDisplayer.currentPlayer
+
     }else {
       console.log("The cell is occoupied choose another cell")
     }
@@ -66,18 +73,23 @@ function checkWinner(board) {
     [2, 4, 6],
   ];
     
-  if(boardDisplayer.gameboard.every((value)=> value !== "")){
-    console.log("it's a tie")
-  }
+
   for (let i = 0; i < winCondition.length; i++ ){
     let [a, b, c] = winCondition[i]
     if (board[a] !== "" && board[b] !== "" && board[c]){
       if(board[a] === board[b] && board[c] === board[a]){
         console.log( `${board[a]} wins`)
+        displayContollers.statusDisplayer.innerText = `${board[a]} Wins`
         boardDisplayer.gameover = true
         break;
       }
     }
+  }
+
+  if(boardDisplayer.gameboard.every((value)=> value !== "")){
+    console.log("it's a tie")
+    displayContollers.statusDisplayer.innerText = "It's a tie"
+
   }
 }
 
@@ -87,5 +99,7 @@ function restartGame() {
   document.querySelectorAll(".cell").forEach((cell)=> {
     cell.innerText = "";
   })
+  displayContollers.statusDisplayer.innerText = ""
+
 
 }
